@@ -41,3 +41,17 @@ def MostExpensive(costs, names):
   """
   mostExpensive = names[costs.index(max(costs))]
   return(f"The most expensive bag is {mostExpensive}")
+
+def MostExpensivePerGram(costs, names, weights):
+  """
+  Finds the name of the most expensive item per gram
+
+  Arguments:
+  costs (list), names (list), weights (list)
+  """
+  #pricePerHundred
+  pPH = []
+  for i in range(len(names)):
+    pPH.append((weights[i]/costs[i])*100)
+  mostExpensivePerGram = names[pPH.index(max(pPH))]
+  return(f"The most expensive bag per gram is {mostExpensivePerGram}
