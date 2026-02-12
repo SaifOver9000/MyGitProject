@@ -7,8 +7,11 @@ def MedianCost(costs):
   Arguments:
   costs (list)
   """
-  medianCost = statistics.median(costs)
-  return(f"The median cost per bag is ${medianCost}")
+  try:
+    medianCost = statistics.median(costs)
+    return(f"The median cost per bag is ${medianCost}")
+  except ValueError as e:
+    return(f"Error calculating median cost: {e}. Please ensure the costs list is not empty and contains valid numbers.")
 
 def MinCost(costs):
   """
@@ -17,8 +20,11 @@ def MinCost(costs):
   Arguments:
   costs (list)
   """
-  minCost = min(costs)
-  return(f"The minimum cost per bag is ${minCost}")
+  try:
+    minCost = min(costs)
+    return(f"The minimum cost per bag is ${minCost}")
+  except ValueError as e:
+    return(f"Error calculating minimum cost: {e}. Please ensure the costs list is not empty and contains valid numbers.")
 
 def MaxCost(costs):
   """
@@ -27,8 +33,11 @@ def MaxCost(costs):
   Arguments:
   costs (list)
   """
-  maxCost = max(costs)
-  return(f"The maximum cost per bag is ${maxCost}")
+  try:
+    maxCost = max(costs)
+    return(f"The maximum cost per bag is ${maxCost}")
+  except ValueError as e:
+    return(f"Error calculating maximum cost: {e}. Please ensure the costs list is not empty and contains valid numbers.")
 
 def MostExpensive(costs, names):
   """
@@ -37,8 +46,11 @@ def MostExpensive(costs, names):
   Arguments:
   costs (list), names (list)
   """
-  mostExpensive = names[costs.index(max(costs))]
-  return(f"The most expensive bag is {mostExpensive}")
+  try:
+    mostExpensive = names[costs.index(max(costs))]
+    return(f"The most expensive bag is {mostExpensive}")
+  except Exception as e:
+    return(f"Error finding most expensive bag: {e}. Please ensure the costs and names lists are not empty and have the same length.")
 
 def MostExpensivePerGram(costs, names, weights):
   """
@@ -54,37 +66,59 @@ def MostExpensivePerGram(costs, names, weights):
   mostExpensivePerGram = names[pPH.index(max(pPH))]
   return(f"The most expensive bag per gram is {mostExpensivePerGram}")
 
-#2nd Change
-#contains our custom functions
-bags_size = []
-bags_cost = []
-product_names = []
-highest_expensiveitem_pergram = []
-most_expensiveitme_pergram = []
-go = True
-while (go):
-  ans = input("Do you want to input data? (say 'yes' to contuine and 'done' to stop):")
-  if ans == "yes":
-    bag_size = float(input("What is the size of the bag of vegitable purchased in grams?"))
-    bags_size.append(bag_size)
-    bag_cost = float(input("What is the cost of the bag of vegitable purchesd"))
-    bags_cost.append(bag_cost)
-    product_name = float(input("What is the name of the product?"))
-    product_names.append(product_name)
-    cost_per_100g = (bag_cost/ bag_size)*100
-    print(f"{product_name}  costs per 100g is ${cost_per_100g:.3f}/100 grams")
-    go = True
-  elif ans == "done":
-    go = False
-  else:
-    print("Please write the correct ans")
 
-if len(bags_cost)>0:
-  overall_cost = sum(bags_cost)
-  print(overall_cost)
-  overall_cost_per_100g = (overall_cost/ overall_weight)*100
-  print(overall_cost_per_100g)
-  mean_cost_perbag = (overall_cost)/len(bags_cost)
-  print(mean_cost_perbag)
-else:
-  print("havent entered anything")
+def TotalCost(costs):
+  """
+  Calculates the total cost of a list of costs
+
+  Arguments:
+  costs (list)
+  """
+  try:
+    totalCost = sum(costs)
+    return(f"The total cost of all the bags is ${totalCost}")
+  except ValueError as e:
+    return(f"Error calculating total cost: {e}. Please ensure the costs list contains valid numbers.")
+
+
+def TotalWeight(weights):
+  """
+  Calculates the total weight of a list of weights
+
+  Arguments:
+  weights (list)
+  """
+  try:
+    totalWeight = sum(weights)
+    return(f"The total weight of all the bags is {totalWeight} grams")
+  except ValueError as e:
+    return(f"Error calculating total weight: {e}. Please ensure the weights list contains valid numbers.")
+
+def OverallCostPer100Grams(costs, weights):
+  """
+  Calculates the overall cost per 100 grams of a list of costs and weights
+
+  Arguments:
+  costs (list), weights (list)
+  """
+  try:
+    totalCost = sum(costs)
+    totalWeight = sum(weights)
+    costPer100Grams = (totalCost/totalWeight)*100
+    return(f"The overall cost per 100 grams is ${costPer100Grams}")
+  except ValueError as e:
+    return(f"Error calculating overall cost per 100 grams: {e}. Please ensure the costs and weights lists contain valid numbers.")
+  
+def MeanCost(costs):
+  """
+  Calculates the mean cost of a list of costs
+
+  Arguments:
+  costs (list)
+  """
+  try:
+    meanCost = statistics.mean(costs)
+    return(f"The mean cost per bag is ${meanCost}")
+  except ValueError as e:
+    return(f"Error calculating mean cost: {e}. Please ensure the costs list is not empty and contains valid numbers.")  
+  
